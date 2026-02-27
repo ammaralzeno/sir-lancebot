@@ -1,0 +1,134 @@
+@startuml global leaderboard
+' Generates the UML diagram of the global leaderboard
+' Conversion to png can be done at: https://www.plantuml.com/plantuml/uml/
+
+class LinePaginator
+
+' Leaderboards
+class ConfirmClear {
+    - author_id: int
+    + confirm()
+    + cancel()
+}
+
+class Leaderboard {
+    - points_cache: RedisCache
+    + leaderboard_command(ctx)
+    + leaderboard_today(ctx)
+    + leaderboard_me(ctx)
+    + leaderboard_user(ctx, user)
+    + leaderboard_clear(ctx)
+    - _daily_key(user_id, game_name)
+    - _get_points_cache()
+    + add_points(bot, user_id, game_name)
+    + remove_points(bot, user_id, points)
+    + get_leaderboard(bot)
+    + get_daily_leaderboard(bot)
+    + get_user_rank(bot, user_id)
+    + get_user_points(bot, user_id)
+}
+
+' ------------ Games ------------ 
+
+' called Game in battleship.py
+class BattleshipGame {
+    - bot
+    - p1
+    - p2
+    - turn
+    - next
+    + start_game()
+    + take_turn()
+    + hit()
+    + game_over()
+}
+
+class CoinFlip {
+    - bot
+    + coinflip_command()
+}
+
+' called Game in connect_four.py
+class ConnectFourGame {
+    - bot
+    - player1
+    - player2
+    - grid 
+    + game_over(player1, player2)
+    + player_turn()
+    + check_win(coords, player_num)
+}
+
+class Minesweeper {
+    - bot
+    - games: dict[int, Game]
+    - points_by_user
+    + start_command()
+    + won()
+    + reveal_command()
+    + end_command()
+}
+
+' called Game in minesweeper.py
+class MinesweeperGame {
+    - board
+    - revealed
+}
+
+class Snakes {
+    - bot
+    - snake_quizzes
+    - validate_answer()
+    + quiz_command()
+}
+
+' called Game in tic_tac_toe.py
+class TicTacToeGame {
+    - players
+    - ctx
+    - board
+    - current
+    - next
+    + play()
+}
+
+class TriviaQuiz {
+    - bot
+    - game_owners
+    - player_scores
+    - game_player_scores
+    + quiz_game()
+}
+
+class EasterRiddle {
+    - bot
+    + riddle()
+}
+
+class EggHeadQuiz {
+    - quiz_messages
+    + eggquiz(ctx)
+}
+
+
+' ------------ Relationships ------------
+
+'Dependency
+Leaderboard ..> ConfirmClear
+Leaderboard ..> LinePaginator
+Leaderboard --> RedisCache
+
+BattleshipGame ..> Leaderboard
+CoinFlip ..> Leaderboard
+ConnectFourGame ..> Leaderboard
+Minesweeper ..> Leaderboard
+Snakes ..> Leaderboard
+TicTacToeGame ..> Leaderboard
+TriviaQuiz ..> Leaderboard
+EasterRiddle ..> Leaderboard
+EggHeadQuiz ..> Leaderboard
+
+' Aggregation
+Minesweeper "1" o-- "*" MinesweeperGame 
+
+@enduml
