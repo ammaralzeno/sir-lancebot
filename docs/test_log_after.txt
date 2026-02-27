@@ -1,0 +1,35 @@
+# Regression test log (after) – unit/integration tests
+#
+# Command: python -m pytest -v
+# (From sir-lancebot: cd sir-lancebot && python -m pytest -v)
+#
+# --- pytest output ---
+
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.0.2, pluggy-1.5.0 -- ...
+cachedir: .pytest_cache
+rootdir: ...
+configfile: pyproject.toml
+plugins: cov-7.0.0
+collecting ... collected 16 items
+
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_add_points_daily_cap_no_add PASSED [  6%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_add_points_increases_score PASSED [ 12%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_add_points_returns_zero_when_cog_missing PASSED [ 18%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_add_points_zero_is_no_op PASSED [ 25%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_daily_leaderboard_returns_empty_when_cog_missing PASSED [ 31%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_daily_leaderboard_skips_malformed_keys PASSED [ 37%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_leaderboard_returns_empty_when_cog_missing PASSED [ 43%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_leaderboard_returns_sorted_desc PASSED [ 50%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_points_cache_uses_leaderboard_points_cache PASSED [ 56%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_user_points_returns_zero_when_no_cog PASSED [ 62%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_user_rank_returns_none_when_not_on_leaderboard PASSED [ 68%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_get_user_rank_returns_rank_when_on_leaderboard PASSED [ 75%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_remove_points_decreases_score PASSED [ 81%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_remove_points_returns_zero_when_user_missing PASSED [ 87%]
+tests/test_leaderboard_utils.py::LeaderboardUtilsTests::test_remove_points_zero_or_negative_returns_current PASSED [ 93%]
+tests/test_scoring_rules.py::ScoringRulesTests::test_coinflip_win_calls_add_points_with_correct_value PASSED [100%]
+
+============================== 16 passed in 1.48s ==============================
+
+# Result: exit code 0 (success). 16 tests passed.

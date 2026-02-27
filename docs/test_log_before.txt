@@ -1,0 +1,13 @@
+# Regression test log (before), existing check
+#
+# Note: This project has no traditional unit or integration tests. The only
+# automated check is that the bot starts and loads all extensions (CI "Attempt bot setup"). 
+# We use this as the "existing regression" and document it as the test log before our changes.
+#
+# Command: REDIS_USE_FAKEREDIS=true CLIENT_IN_CI=true CLIENT_TOKEN="" uv run python -m bot
+
+2026-02-20 15:27:51 | INFO | root | Logging initialization complete
+2026-02-20 15:27:51 | DEBUG | pydis_core.utils._monkey_patches | Patching send_typing, which should fix things breaking when Discord disables typing events. Stay safe!
+2026-02-20 15:27:51 | WARNING | discord.client | PyNaCl is not installed, voice will NOT be supported
+
+# Result: exit code 0 (success).

@@ -1,0 +1,12 @@
+# Regression check – FAILURE (fault injection)
+#
+# Purpose: Prove that the "Attempt bot setup" check actually detects failures.
+# Injected fault: raise SystemExit(1) at the start of main() in bot/__main__.py.
+# 
+#
+# Command: REDIS_USE_FAKEREDIS=true CLIENT_IN_CI=true CLIENT_TOKEN="" uv run python -m bot
+
+2026-02-20 16:00:58 | INFO | root | Logging initialization complete
+2026-02-20 16:00:58 | DEBUG | pydis_core.utils._monkey_patches | Patching send_typing, which should fix things breaking when Discord disables typing events. Stay safe!
+
+# Result: exit code 1 (failure). 
