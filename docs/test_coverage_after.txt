@@ -1,0 +1,26 @@
+# Test coverage (after) – leaderboard + coinflip
+#
+# Purpose: Document coverage for leaderboard and games after adding tests.
+#
+# Command: python -m pytest tests/ --cov=bot.utils.leaderboard --cov=bot.exts.fun.coinflip --cov-report=term-missing --cov-branch -q
+#
+# --- coverage output ---
+
+============================== test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.0.2, pluggy-1.5.0
+rootdir: /Users/annaremmare/Desktop/soffan/DD2480-4/sir-lancebot
+configfile: pyproject.toml
+plugins: cov-7.0.0
+collected 16 items
+
+................                                                         [100%]
+================================ tests coverage ================================
+Name                       Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------
+bot/exts/fun/coinflip.py      33     10      8      2    61%   20-27, 47-48, 54, 60
+bot/utils/leaderboard.py      76      0     26      0   100%
+----------------------------------------------------------------------
+TOTAL                        109     10     34      2    89%
+16 passed in 1.05s
+
+# Result: leaderboard 100%; coinflip 61% (scoring path covered for the games, not the game logic).
